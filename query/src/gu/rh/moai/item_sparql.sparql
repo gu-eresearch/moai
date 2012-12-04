@@ -1,0 +1,328 @@
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ands: <http://www.ands.org.au/ontologies/ns/0.1/VITRO-ANDS.owl#>
+PREFIX bibo: <http://purl.org/ontology/bibo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX for2008: <http://purl.org/asc/1297.0/2008/for/>
+PREFIX for: <http://purl.org/asc/1297.0/for/>
+PREFIX guhubext: <http://griffith.edu.au/ontology/hubextensions/>
+PREFIX core: <http://vivoweb.org/ontology/core#>
+PREFIX dcterms:  <http://purl.org/dc/terms/> 
+PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX cld: <http://purl.org/cld/terms/>
+
+CONSTRUCT 
+{
+	<%(subject)s> core:overview ?Overview .
+	<%(subject)s> core:email ?Email .
+	<%(subject)s> core:primaryEmail ?PrimaryEmail .
+	<%(subject)s> core:phoneNumber ?PhoneNumber .
+	<%(subject)s> core:faxNumber ?FaxNumber .
+	<%(subject)s> core:preferredTitle ?PreferredTitle .
+	<%(subject)s> core:hasFundingVehicle ?HasFundingVehicle .
+	
+	<%(subject)s> rdfs:label ?Label .
+	
+	<%(subject)s> rdf:type ?Type .
+	
+	<%(subject)s> bibo:doi ?Doi .
+	<%(subject)s> bibo:handle ?Handle .
+	<%(subject)s> bibo:shortDescription ?ShortDescription .
+	
+	<%(subject)s> dcterms:contributor ?Contributor .
+	<%(subject)s> dcterms:provenance ?Provenance .
+	<%(subject)s> dcterms:publisher ?Publisher .
+	<%(subject)s> dcterms:spatial ?Spatial .
+	<%(subject)s> dcterms:title ?Title .
+	<%(subject)s> dcterms:temporal ?Temporal .
+	<%(subject)s> dcterms:rights ?Rights .
+	<%(subject)s> dcterms:accessRights ?AccessRights .
+    <%(subject)s> dcterms:issued ?Issued .
+	
+	<%(subject)s> foaf:name ?Name .
+	<%(subject)s> foaf:familyName ?FamilyName .
+	<%(subject)s> foaf:givenName ?GivenName .
+	<%(subject)s> foaf:middleName ?MiddleName .
+	<%(subject)s> foaf:firstName ?FirstName .
+	<%(subject)s> foaf:lastName ?LastName .
+	<%(subject)s> foaf:mbox ?Mbox .
+	<%(subject)s> foaf:title ?Title .
+	<%(subject)s> foaf:fundedBy ?FundedByLabel .
+
+    <%(subject)s> guhubext:projectstate ?Projectstatelabel .
+    <%(subject)s> guhubext:existenceDates ?ExistenceDates .
+			
+	<%(subject)s> ands:nla ?Nla .
+
+	<%(subject)s> cld:itemFormat ?ItemFormat .
+	
+	<%(subject)s> core:mailingAddress ?address .
+	?address ands:addressLabel ?adressLabel . 
+    ?address core:addressDepartment ?addressDepartment .
+	?address core:addressStreet ?addressStreet . 
+	?address core:addressCity ?addressCity . 
+	?address core:addressState ?addressState . 
+	?address core:addressCountry ?addressCountry . 
+	?address core:addressPostalCode ?addressPostalCode . 
+
+    ?address guhubext:fullAddress ?fullAddress .
+    ?address guhubext:partAddress ?partAddress .
+    ?address guhubext:minAddress ?minAddress .
+	
+	<%(subject)s> core:webpage ?Webpage .
+	?Webpage core:linkType ?linkType .
+	?Webpage core:linkURI ?WebpageURL .
+	?Webpage core:linkAnchorText ?linkAnchorText .
+	
+	<%(subject)s> core:hasSubjectArea ?subjectArea . 
+    <%(subject)s> core:hasSubjectAreaLabel ?subjectAreaLabel . 
+    <%(subject)s> core:hasSubjectAreaLabel ?researchAreaLabel .  
+	<%(subject)s> ands:addressLabel ?adressLabel . 
+	<%(subject)s> ands:isOutputOf ?isOutputOf . 
+	<%(subject)s> ands:hasOutput ?hasOutput . 
+	<%(subject)s> ands:isOwnedBy ?isOwnedBy . 
+	<%(subject)s> ands:isOwnerOf ?isOwnerOf . 
+	<%(subject)s> ands:isManagedBy ?isManagedBy . 
+	<%(subject)s> ands:isManagerOf ?isManagerOf .
+	<%(subject)s> ands:isParticipantIn ?isParticipantIn .
+	<%(subject)s> ands:hasParticipant ?hasParticipant . 
+	<%(subject)s> ands:isPointOfContactFor ?isPointOfContactFor .
+	<%(subject)s> ands:hasPointOfContact ?hasPointOfContact .
+    <%(subject)s> ands:hasAssociationWith ?hasAssociationWith .
+    <%(subject)s> ands:isSupportedBy ?isSupportedBy . 
+    <%(subject)s> ands:supports ?supports . 
+    <%(subject)s> ands:isCollectorOf ?isCollectorOf . 
+    
+
+    <%(subject)s> ands:hasCollector ?hasCollector . 
+        ?hasCollector rdfs:label ?collectorLabel .
+        ?hasCollector foaf:familyName ?collectorFamilyName . 
+        ?hasCollector foaf:firstName ?collectorFirstName . 
+
+	<%(subject)s> core:hasMemberRole ?hasMemberRole .
+	<%(subject)s> core:memberRoleOf ?memberRoleOf . 
+	<%(subject)s> core:hasInvestigatorRole ?hasInvestigatorRole .
+	<%(subject)s> core:investigatorRoleOf ?investigatorRoleOf .
+	<%(subject)s> core:hasPrincipalInvestigatorRole ?hasPrincipalInvestigatorRole .
+	<%(subject)s> core:principalInvestigatorRoleOf ?principalInvestigatorRoleOf .
+	<%(subject)s> guhubext:primaryAffiliationRoleOf ?primaryAffiliationRoleOf . 
+	<%(subject)s> guhubext:hasPrimaryAffiliationRole ?hasPrimaryAffiliationRole . 
+	<%(subject)s> core:start ?dateTimeStart .
+	<%(subject)s> core:end ?dateTimeEnd .
+	
+        <%(subject)s> dcterms:type ?dctermstype .
+        <%(subject)s> dcterms:description ?dctermsdescription .   
+}
+WHERE
+{
+GRAPH <urn:x-arq:UnionGraph> {
+	 {
+		OPTIONAL { <%(subject)s> core:overview ?Overview . }
+		OPTIONAL { <%(subject)s> core:email ?Email . }
+		OPTIONAL { <%(subject)s> core:primaryEmail ?PrimaryEmail . }
+		OPTIONAL { <%(subject)s> core:phoneNumber ?PhoneNumber . }
+		OPTIONAL { <%(subject)s> core:faxNumber ?FaxNumber . }
+		OPTIONAL { <%(subject)s> core:preferredTitle ?PreferredTitle . }
+		OPTIONAL { <%(subject)s> core:hasFundingVehicle ?HasFundingVehicle . }
+		
+		OPTIONAL { <%(subject)s> rdfs:label ?Label . }
+		
+		OPTIONAL { <%(subject)s> rdf:type ?Type . }
+		
+		OPTIONAL { <%(subject)s> bibo:doi ?Doi . }
+		OPTIONAL { <%(subject)s> bibo:handle ?Handle . }
+		OPTIONAL { <%(subject)s> bibo:shortDescription ?ShortDescription . }
+		
+		OPTIONAL { <%(subject)s> dcterms:contributor ?Contributor . }
+		OPTIONAL { <%(subject)s> dcterms:provenance ?Provenance . }
+		OPTIONAL { <%(subject)s> dcterms:publisher ?Publisher . }
+		OPTIONAL { <%(subject)s> dcterms:spatial ?Spatial . }
+		OPTIONAL { <%(subject)s> dcterms:title ?Title . }
+		OPTIONAL { <%(subject)s> dcterms:temporal ?Temporal . }
+		OPTIONAL { <%(subject)s> dcterms:rights ?Rights . }
+		OPTIONAL { <%(subject)s> dcterms:accessRights ?AccessRights . }
+        OPTIONAL { <%(subject)s> dcterms:issued ?Issued . }
+		
+		OPTIONAL { <%(subject)s> foaf:name ?Name . }
+		OPTIONAL { <%(subject)s> foaf:familyName ?FamilyName . }
+		OPTIONAL { <%(subject)s> foaf:givenName ?GivenName . }
+		OPTIONAL { <%(subject)s> foaf:middleName ?MiddleName . }
+		OPTIONAL { <%(subject)s> foaf:firstName ?FirstName . }
+		OPTIONAL { <%(subject)s> foaf:lastName ?LastName . }
+		OPTIONAL { <%(subject)s> foaf:mbox ?Mbox . }
+		OPTIONAL { <%(subject)s> foaf:title ?Title . }
+		OPTIONAL { <%(subject)s> foaf:fundedBy ?FundedBy . 
+                    ?FundedBy rdfs:label ?FundedByLabel .
+        }
+
+        OPTIONAL { <%(subject)s> guhubext:projectstate ?Projectstate . 
+                    ?Projectstate rdfs:label ?Projectstatelabel .
+        }
+		
+		OPTIONAL { <%(subject)s> ands:nla ?Nla . }
+
+		OPTIONAL { <%(subject)s> cld:itemFormat ?ItemFormat . }
+		
+		OPTIONAL { <%(subject)s> guhubext:existenceDates ?ExistenceDates . }
+      	
+		
+		
+      
+		OPTIONAL { <%(subject)s> core:webpage ?Webpage . 
+				OPTIONAL { ?Webpage core:linkType ?linkType . }
+				OPTIONAL { ?Webpage core:linkAnchorText ?linkAnchorText . }
+				?Webpage core:linkURI ?WebpageURL .
+				#FILTER (?linkType = "eResearch Equella")
+		}
+		
+		OPTIONAL { <%(subject)s> core:mailingAddress ?address . 
+				OPTIONAL { ?address ands:addressLabel ?adressLabel . }
+				OPTIONAL { ?address core:addressDepartment ?addressDepartment . }
+				OPTIONAL { ?address core:description ?addressCampus . }
+				OPTIONAL { ?address core:addressStreet ?addressStreet . }
+				OPTIONAL { ?address core:addressCity ?addressCity . }
+				OPTIONAL { ?address core:addressState ?addressState . }
+				OPTIONAL { ?address core:addressCountry ?addressCountry . }
+				OPTIONAL { ?address core:addressPostalCode ?addressPostalCode . }
+                LET( ?fullAddress := fn:concat(?addressDepartment, " ", ?addressCampus, " ", ?adressLabel) )
+                LET( ?partAddress := fn:concat(?addressCampus, " " ,?adressLabel) )
+                LET( ?minAddress := fn:concat(?addressDepartment) )
+				}
+		}
+		
+		
+		UNION { 
+				<%(subject)s> core:hasSubjectArea ?subjectArea . 
+				#?subjectArea <http://purl.org/asc/1297.0/code> ?subjectAreaCode .
+				?subjectArea rdfs:label ?subjectAreaLabel .
+		}
+        UNION { 
+                <%(subject)s> core:hasResearchArea ?researchArea . 
+                ?researchArea rdfs:label ?researchAreaLabel .
+        }
+		UNION { 
+				<%(subject)s> ands:isOutputOf ?isOutputOf . 
+				?isOutputOf ands:harvestedBy <%(harvester)s> .
+		}
+		UNION { 
+				<%(subject)s> ands:hasOutput ?hasOutput . 
+				?hasOutput ands:harvestedBy <%(harvester)s> .
+		}
+		
+		UNION { 
+				<%(subject)s> ands:isOwnedBy ?isOwnedBy . 
+				?isOwnedBy ands:harvestedBy <%(harvester)s> .
+		}
+		UNION { 
+				<%(subject)s> ands:isOwnerOf ?isOwnerOf . 
+				?isOwnerOf ands:harvestedBy <%(harvester)s> .
+		}
+		
+		UNION { 
+				<%(subject)s> ands:isManagedBy ?isManagedBy . 
+				?isManagedBy ands:harvestedBy <%(harvester)s> .
+		}
+		UNION { 
+				<%(subject)s> ands:isManagerOf ?isManagerOf . 
+				?isManagerOf ands:harvestedBy <%(harvester)s> .
+      	}
+		
+		UNION { 
+				<%(subject)s> ands:isParticipantIn ?isParticipantIn . 
+				?isParticipantIn ands:harvestedBy <%(harvester)s> .
+      	}
+      	UNION { 
+				<%(subject)s> ands:hasParticipant ?hasParticipant . 
+				?hasParticipant ands:harvestedBy <%(harvester)s> .
+      	}
+      	
+      	UNION { 
+				<%(subject)s> ands:isPointOfContactFor ?isPointOfContactFor . 
+				?isPointOfContactFor ands:harvestedBy <%(harvester)s> .
+      	}
+      	UNION { 
+				<%(subject)s> ands:hasPointOfContact ?hasPointOfContact . 
+				?hasPointOfContact ands:harvestedBy <%(harvester)s> .
+      	}
+        UNION { 
+                <%(subject)s> ands:hasAssociationWith ?hasAssociationWith . 
+                ?hasAssociationWith ands:harvestedBy <%(harvester)s> .
+        }
+        UNION { 
+                <%(subject)s> ands:isSupportedBy ?isSupportedBy . 
+                ?isSupportedBy ands:harvestedBy <%(harvester)s> .
+        }
+        UNION { 
+                <%(subject)s> ands:supports ?supports . 
+                ?supports ands:harvestedBy <%(harvester)s> .
+        }
+        UNION { 
+                <%(subject)s> ands:isCollectorOf ?isCollectorOf . 
+                ?isCollectorOf ands:harvestedBy <%(harvester)s> .
+        }
+        
+
+        UNION { 
+                <%(subject)s> ands:hasCollector ?hasCollector . 
+                ?hasCollector ands:harvestedBy <%(harvester)s> .
+                ?hasCollector rdfs:label ?collectorLabel .
+                OPTIONAL { ?hasCollector foaf:familyName ?collectorFamilyName . }
+                OPTIONAL { ?hasCollector foaf:firstName ?collectorFirstName . }
+        }
+      	
+      	UNION { 
+				<%(subject)s> core:relatedRole ?role . 
+				?role core:memberRoleOf ?memberRoleOf . 
+				?memberRoleOf ands:harvestedBy <%(harvester)s> .
+		} 
+        UNION { 
+      	        <%(subject)s> core:hasMemberRole ?relatedRole . 
+      	        ?relatedRole core:roleIn ?hasMemberRole .
+				?hasMemberRole ands:harvestedBy <%(harvester)s> .
+        }
+        
+        UNION { 
+      	        <%(subject)s> core:hasInvestigatorRole ?relatedRole . 
+      	        ?relatedRole core:roleIn ?hasInvestigatorRole .
+				?hasInvestigatorRole ands:harvestedBy <%(harvester)s> .
+        }
+        UNION { 
+      	        <%(subject)s> core:investigatorRoleOf ?relatedRole . 
+      	        ?relatedRole core:roleIn ?investigatorRoleOf .
+				?investigatorRoleOf ands:harvestedBy <%(harvester)s> .
+        }
+        
+        UNION { 
+      	        <%(subject)s> core:hasPrincipalInvestigatorRole ?relatedRole . 
+      	        ?relatedRole core:roleIn ?hasPrincipalInvestigatorRole .
+				?hasPrincipalInvestigatorRole ands:harvestedBy <%(harvester)s> .
+        }
+        UNION { 
+      	        <%(subject)s> core:principalInvestigatorRoleOf ?relatedRole . 
+      	        ?relatedRole core:roleIn ?principalInvestigatorRoleOf .
+				?principalInvestigatorRoleOf ands:harvestedBy <%(harvester)s> .
+        }
+      	UNION { 	
+      			<%(subject)s> core:relatedRole ?role . 
+      			?role guhubext:primaryAffiliationRoleOf ?primaryAffiliationRoleOf . 
+				?primaryAffiliationRoleOf ands:harvestedBy <%(harvester)s> .
+      	}
+      	UNION { 
+      	        <%(subject)s> guhubext:hasPrimaryAffiliationRole ?relatedRole . 
+      	        ?relatedRole core:roleIn ?hasPrimaryAffiliationRole .
+				?hasPrimaryAffiliationRole ands:harvestedBy <%(harvester)s> .
+        }
+      	UNION { <%(subject)s> core:dateTimeInterval ?dateTimeInterval . 
+      				?dateTimeInterval core:start ?valueStart .
+                    ?valueStart core:dateTime ?dateTimeStart .
+        }      
+       	UNION { <%(subject)s> core:dateTimeInterval ?dateTimeInterval2 . 
+      				?dateTimeInterval2 core:end ?valueEnd .
+                    ?valueEnd core:dateTime ?dateTimeEnd .
+        }       
+        UNION { <%(subject)s> dcterms:type ?dctermstype . }
+        UNION { <%(subject)s> dcterms:description ?dctermsdescription . }
+        
+ }       
+        
+}

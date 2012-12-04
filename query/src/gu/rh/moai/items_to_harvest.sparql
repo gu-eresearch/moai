@@ -1,0 +1,23 @@
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ands: <http://www.ands.org.au/ontologies/ns/0.1/VITRO-ANDS.owl#>
+PREFIX bibo: <http://purl.org/ontology/bibo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX for2008: <http://purl.org/asc/1297.0/2008/for/>
+PREFIX for: <http://purl.org/asc/1297.0/for/>
+PREFIX guhubext: <http://griffith.edu.au/ontology/hubextensions/>
+PREFIX core: <http://vivoweb.org/ontology/core#>
+PREFIX dcterms:  <http://purl.org/dc/terms/> 
+PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX cld: <http://purl.org/cld/terms/>
+
+SELECT DISTINCT ?item 
+WHERE { 
+	GRAPH <urn:x-arq:UnionGraph> {
+		{ ?item ands:harvestedBy <%(harvester)s>  . ?item a guhubext:GrantProject . }
+        UNION { ?item ands:harvestedBy <%(harvester)s> .  ?item a foaf:Person . }
+        UNION { ?item ands:harvestedBy <%(harvester)s> .  ?item a ands:ResearchData . }
+        UNION { ?item ands:harvestedBy <%(harvester)s> .  ?item a guhubext:GUOrganisation . }
+        UNION { ?item ands:harvestedBy <%(harvester)s> .  ?item a core:Service . }
+	} 
+
+} 
